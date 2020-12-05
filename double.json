@@ -1,5 +1,7 @@
 [
 {
+"name":["double"],
+"priority": [3],
 "start": ["q0"],
 "finish": ["q3"],
 "matrix": {

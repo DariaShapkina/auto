@@ -1,5 +1,7 @@
 [
   {
+    "name":["operation"],
+    "priority": [2],
     "start": ["q0"],
     "finish": ["q1" ],
     "matrix": {

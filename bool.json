@@ -1,5 +1,6 @@
 [
-  {
+  { "name":["bool"],
+    "priority": [5],
     "start": ["q0"],
     "finish": ["q4" , "q10"],
     "matrix": {

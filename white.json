@@ -1,5 +1,6 @@
 [
-  {
+  { "name":["whitespace"],
+    "priority": [1],
     "start": ["q0"],
     "finish": ["q1" ],
     "matrix": {

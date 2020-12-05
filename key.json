@@ -1,5 +1,6 @@
 [
-  {
+  { "name":["keyword"],
+    "priority": [6],
     "start": ["q0"],
     "finish": ["q5" , "q8", "q10"],
     "matrix": {
