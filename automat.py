@@ -35,7 +35,8 @@ class Automat:
 
     
     def maxString(self, s, skip):
-        k = 0
+        self.state = [False,0]
+        k = skip
         under = 0
         ss = self.matrix.get(self.start)
         while(k < len(s)):
@@ -61,11 +62,38 @@ class Automat:
     def __ge__(self, other):
         return other.priority <= self.priority
     def __cmp__(self, other):
-            return self.priority - other.priority
+            return self.priority == other.priority
 
 class Lexer:
      def __init__(self, automats):
-         self.automats = sorted(automats, reversed=True)
+         self.automats = sorted(automats)
+         #for i in self.automats:
+          #   print(i.name)
+         self.tok = []
+
+
+     def tokens(self,s):
+         index = 0
+         while (index < len(s)):
+             for i in self.automats:       
+                 check = i.maxString(s[index:],0)
+                 if (check[0]):
+                     x = Token(i.name[0], s[index:index+check[1]])
+                     self.tok.append(x)
+                     index = index + check[1]
+                     break
+         return self.tok        
+                    
+            
+class Token:
+  def __init__(self, classname, token):
+      self.classname = classname
+      self.token = token
+    
+  def __str__(self):
+    return '({}, {})'.format(self.classname, self.token)             
+
+
 
 test1 = Automat('data.json')
 print(test1.maxString("w1221ggg34411f",0))
@@ -77,12 +105,15 @@ print(test1.maxString("qwer.wwww.i",0))
 test1 = Automat('key.json')
 print(test1.maxString("begin1",0))
 
-test = Automat('integer.json')
-print(test.maxString("1222begin1",0))
+test = Automat('white.json')
+print(test.maxString("  122.2begin1",0))
 
 #####################
 
-test = Automat('id.json')
-test1 = Automat('bool.json')
+test = Lexer([Automat("id.json"), Automat('operation.json'),
+                        Automat('double.json'),Automat('integer.json'),
+                        Automat('bool.json'),Automat('key.json'),
+                        Automat("white.json")])
 
-
+for i in test.tokens("begin  if 3 - 1.88888/8 == True"):
+    print(i)
